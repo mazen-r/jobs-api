@@ -25,6 +25,10 @@ app.use(xss());
 const authRoutes = require('./routes/auth');
 const jobsRoutes = require('./routes/jobs')
 
+app.get('/', (req, res) => {
+    res.send('Jobs API')
+})
+
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/jobs', authenticateUser, jobsRoutes);
 
