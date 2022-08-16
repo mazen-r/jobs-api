@@ -26,4 +26,11 @@ describe("GET Jobs", () => {
         expect(res.status).toEqual(401)
     })
   
+    test("it should return 404", async () => {
+        const res = await request(app).get('/api/v1/jobs/62fb925453dceceb2e247a61') // get a job with wrong id
+        .set(
+            'Authorization', `Bearer ${token}`
+        )
+        expect(res.status).toEqual(404)
+    })
 })
