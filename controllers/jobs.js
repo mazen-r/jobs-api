@@ -24,6 +24,10 @@ const getJob = async (req, res) => {
 }
 
 const createJob = async (req, res) => {
+    const { position, company } = req.body
+    if (company === '' || position === '') {
+      throw new BadRequestError('Company or Position fields cannot be empty')
+    }
     req.body.createdBy = req.user.userId
     const job = await Job.create(req.body)
     res.status(StatusCodes.CREATED).json({job})
