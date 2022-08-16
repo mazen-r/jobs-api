@@ -31,3 +31,24 @@ describe("test user login", () => {
         expect(res.text).toEqual('{"msg":"Please provide email and password"}')
     })
 })
+
+describe("test user register", () => {
+
+    test("it should return status 200", async () => {
+        const res = await request(app).post('/api/v1/auth/register')
+        .send({
+            name: "mazen",
+            email: "test2@email.com",
+            password: "secret"
+        })
+        expect(res.status).toEqual(201)
+    })
+
+    test("it should return status 500", async () => {
+        const res = await request(app).post('/api/v1/auth/register')
+        .send({
+            name: "mazen"
+        })
+        expect(res.status).toEqual(500)
+    })
+})
