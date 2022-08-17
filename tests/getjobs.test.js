@@ -21,7 +21,7 @@ describe("GET Jobs", () => {
         expect(res.status).toEqual(200)
     })
 
-    test("it should response", async () => {
+    test("it should response with 401", async () => {
         const res = await request(app).get('/api/v1/jobs/') // getting job without authorization
         expect(res.status).toEqual(401)
     })
